@@ -1,0 +1,7 @@
+cromwell:
+  url: http://ec2-w-x-y-z.compute-1.amazonaws.com
+  username: user1
+  password: 123
+redis:
+  host: ec2-w-x-y-z.compute-1.amazonaws.com
+  port: 6379
