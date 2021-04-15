@@ -2,6 +2,9 @@
 
 source versions.sh
 
+# start docker
+sudo service docker start
+
 cd ${HOME}
 
 # start redis
@@ -49,11 +52,13 @@ screen -S jm -d -m ${HOME}/jmui/bin/jmui_start.sh
 sleep 5
 
 # start cromsfer-poller
+echo "Starting up Cromsfer Poller..."
 screen -S poller -d -m ./start-cromsfer-poller.sh
 
 sleep 5
 
 # start cromsfer-transfer
+echo "Starting up Cromsfer Transfer..."
 screen -S transfer -d -m ./start-cromsfer-transfer.sh
 
 sleep 5
