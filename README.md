@@ -142,6 +142,10 @@ webservice {
 
 Add TCP port `4200` to cromwell-server security group to allow inbound traffic for Job Manager.
 
+![TCP Inbound Rule 1](./images/tcp-inbound-rules-01.png)
+
+![TCP Inbound Rule 2](./images/tcp-inbound-rules-02.png)
+
 ### NGINX
 
 Make sure the listening port is set to `80`, and turn off SSL.
@@ -222,7 +226,7 @@ Look for IAM role whose name starts with `cromwell-Ec2InstanceRole-`.
 
 ![IAM ROLE](./images/update-iam-role.png)
 
-Give all S3 permission to every bucket.
+Give all S3 permission to every bucket. This is necessary if your input files to workflow is stored in other S3 buckets.
 
 BEFORE:
 
@@ -376,3 +380,7 @@ $ cp ./config/job-manager/capabilities-config.json ./jmui/bin/capabilities-confi
 ```bash
 $ ./startup.sh
 ```
+
+## Test Workflow
+
+TBD
