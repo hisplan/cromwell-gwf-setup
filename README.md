@@ -18,7 +18,9 @@ This can be done using the CloudFormation template. Follow the instructions in t
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
-Once the Cromwell server instance is created, SSH into it using "EC2 Instance Connect" using the username `ec2-user` (no password required). This is the only way to connect at this point because CloudFormation does not associate a key pair when creating the Cromwell server instance.
+Once the Cromwell Server EC2 instance is created, SSH into it using the web-based "EC2 Instance Connect" tool in the AWS Management Console. Use the username `ec2-user` (no password required). This is the only way to connect at the moment because CloudFormation does not associate a key pair when creating the Cromwell Server instance.
+
+![](./images/connect-to-instance.png)
 
 To use your existing key pair (.pem) to connect to this instance, first retrieve the public key for your key pair: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#retrieving-the-public-key
 
