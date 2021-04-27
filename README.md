@@ -18,7 +18,7 @@ This can be done using the CloudFormation template. Follow the instructions in t
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
-Once the Cromwell Server EC2 instance is created, SSH into it using the web-based "EC2 Instance Connect" tool in the AWS Management Console. Use the username `ec2-user` (no password required). This is the only way to connect at the moment because CloudFormation does not associate a key pair when creating the Cromwell Server instance.
+Once the Cromwell server EC2 instance is created, SSH into it using the web-based "EC2 Instance Connect" tool in the AWS Management Console. Use the username `ec2-user` (no password required). This is the only way to connect at the moment because CloudFormation does not associate a key pair when creating the Cromwell server instance.
 
 ![](./images/connect-to-instance.png)
 
@@ -333,7 +333,7 @@ backend {
 
 ## Download the Setup Package
 
-SSH into the Cromwell Server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
+SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
 
 ```bash
 $ wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.0.1-alpha.2.tar.gz
@@ -359,7 +359,7 @@ $ ./install.sh
 $ cp ./config/cromsfer/config.template.yaml ./cromsfer/config.yaml
 ```
 
-Open the `./cromsfer/config.yaml` file and replace `ec2-w-x-y-z.compute-1.amazonaws.com` with the actual public IPv4 DNS name of the Cromwell Server EC2 instance. The `user1` password must match with the password you set up for NGINX Basic Authentication.
+Open the `./cromsfer/config.yaml` file and replace `ec2-w-x-y-z.compute-1.amazonaws.com` with the actual public IPv4 DNS name of the Cromwell server EC2 instance. The `user1` password must match with the password you set up for NGINX Basic Authentication.
 
 ```yaml
 cromwell:
@@ -377,10 +377,18 @@ redis:
 $ cp ./config/job-manager/capabilities-config.json ./jmui/bin/capabilities-config.json
 ```
 
-## Start Services
+## Start/Stop Cromwell Server
+
+To bring up the server, run the following from your local machine:
 
 ```bash
-$ ./startup.sh
+$ ./server.sh -u
+```
+
+To bring down the server, run the following from your local machine:
+
+```bash
+$ ./server.sh -d
 ```
 
 ## Test Workflow
