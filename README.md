@@ -385,6 +385,35 @@ To bring up the server, run the following from your local machine:
 $ ./server.sh -u
 ```
 
+```
+$ ./server.sh -u
+{
+    "StartingInstances": [
+        {
+            "CurrentState": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "InstanceId": "i-0ca914341b4913d6c",
+            "PreviousState": {
+                "Code": 80,
+                "Name": "stopped"
+            }
+        }
+    ]
+}
+Cromwell server address: ec2-100-26-88-232.compute-1.amazonaws.com
+Redirecting to /bin/systemctl start docker.service
+Starting up Redis...
+Backing up Cromwell Server Log...
+Starting up Cromwell Server...
+Waiting for Cromwell Server to be up and running...
+Waiting for Cromwell Server to be up and running...
+Starting up Job Manager...
+DONE.
+Cromwell/Job Manager is available at http://ec2-100-26-88-232.compute-1.amazonaws.com:4200
+```
+
 To bring down the server, run the following from your local machine:
 
 ```bash
