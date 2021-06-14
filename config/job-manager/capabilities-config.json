@@ -1,0 +1,64 @@
+{
+  "displayFields": [
+    {
+      "field": "name",
+      "display": "Name"
+    },
+    {
+      "field": "status",
+      "display": "Status"
+    },
+    {
+      "field": "labels.cromwell-workflow-id",
+      "display": "Workflow ID"
+    },
+    {
+      "field": "submission",
+      "display": "Submitted"
+    },
+    {
+      "field": "end",
+      "display": "End Time"
+    },
+    {
+      "field": "labels.sample",
+      "display": "Sample",
+      "fieldType": "text"
+    },
+    {
+      "field": "labels.comment",
+      "display": "Comment",
+      "fieldType": "text",
+      "editable": true,
+      "bulkEditable": true
+    },
+    {
+      "field": "labels.transfer",
+      "display": "Transfer"
+    },
+    {
+      "field": "labels.flag",
+      "display": "Flag",
+      "editable": true,
+      "bulk_editable": true,
+      "fieldType": "list",
+      "validFieldValues": ["archive", "follow-up"]
+    }
+  ],
+  "commonLabels": [
+    "cromwell-workflow-id",
+    "workflow-name",
+    "transfer",
+    "destination",
+    "flag"
+  ],
+  "queryExtensions": [],
+  "authentication": {
+    "isRequired": false,
+    "scopes": [
+      "openid",
+      "email",
+      "profile"
+    ]
+  }
+}
