@@ -61,14 +61,14 @@ sleep 5
 echo "Starting up Cromsfer Transfer..."
 screen -S transfer -d -m ./start-cromsfer-transfer.sh
 
-sleep 5
+# sleep 5
 
-# send ready message to Slack
-slack_hook_key=`aws ssm get-parameters --name="scata-slack-noti-dev" --query="Parameters[0].Value" | sed 's/"//g'`
-ip_addr=`curl --silent http://169.254.169.254/latest/meta-data/public-hostname`
+# # send ready message to Slack
+# slack_hook_key=`aws ssm get-parameters --name="scata-slack-noti-dev" --query="Parameters[0].Value" | sed 's/"//g'`
+# ip_addr=`curl --silent http://169.254.169.254/latest/meta-data/public-hostname`
 
-python3 notify_slack.py \
-  --hook-key="${slack_hook_key}" \
-  --message="Cromwell/Job Manager is available at http://${ip_addr}:4200"
+# python3 notify_slack.py \
+#   --hook-key="${slack_hook_key}" \
+#   --message="Cromwell/Job Manager is available at http://${ip_addr}:4200"
 
 echo "DONE."
