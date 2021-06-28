@@ -8,13 +8,13 @@ TBD
 
 ## Deploy Genomics Workflow Core
 
-This can be done using the CloudFormation template. Follow the instructions in the section called `Deployment of Genomics Workflow Core into an existing VPC` which can be found [here](./cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
+This can be done using the CloudFormation template. Follow the instructions in the section called `Deployment of Genomics Workflow Core into an existing VPC` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
 ## Deploy Cromwell Resources
 
-This can be done using the CloudFormation template. Follow the instructions in the section called `Deploy Cromwell Resources` which can be found [here](./cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
+This can be done using the CloudFormation template. Follow the instructions in the section called `Deploy Cromwell Resources` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
@@ -32,7 +32,9 @@ $ echo 'ssh-rsa AAAAB3NzaC1yc2EAAA...PLE' >> /home/ec2-user/.ssh/authorized_keys
 
 Helpful article: https://aws.amazon.com/premiumsupport/knowledge-center/user-data-replace-key-pair-ec2/
 
-## Install Prerequisites
+## Prerequisites
+
+SSH into the Cromwell server instance and install the following software.
 
 ### Install Python 3
 
@@ -345,7 +347,7 @@ Decompress:
 $ tar xvzf cromwell-gwf-setup-0.1.1.tar.gz --strip-components=1
 ```
 
-## Set Up
+## Install Redis and Cromsfer
 
 Run the following command to install Redis and Cromsfer:
 
@@ -376,6 +378,10 @@ redis:
 ```bash
 $ cp ./config/job-manager/capabilities-config.json ./jmui/bin/capabilities-config.json
 ```
+
+## Add Larger EC2 Instance Types
+
+The default CloudFormation does not come up with larger EC2 instance types. To add additional larger EC2 instance types, refer to this document [here](./docs/add-larger-instance-types/README.md).
 
 ## Start/Stop Cromwell Server
 
