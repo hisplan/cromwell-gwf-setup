@@ -18,6 +18,9 @@ The pre-downloaded template can be found in the `cloudformation` directory.
 
 Create a Cromwell server instance and and and RDS Aurora Serverless database cluster using the CloudFormation template here: https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=cromwell-resources&templateURL=https://aws-genomics-workflows.s3.amazonaws.com/latest/templates/cromwell/cromwell-resources.template.yaml
 
+- Make sure that the value for `GWFCoreNamespace` you put in this template must be matched with the value you set when you created a Genomics Workflow Core in the section above.
+- If you are deploying multiple instances of GWF/Cromwell, make sure that the value for `Namespace` you put in this template is unique across all regions (us-east-1, us-west-1, ...)
+
 Follow the instructions in the section called `Deploy Cromwell Resources` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
 
 The pre-downloaded template can be found in the `cloudformation` directory.
@@ -28,7 +31,7 @@ Once the Cromwell server EC2 instance is created, SSH into it using the web-base
 
 To use your existing key pair (.pem) to connect to this instance, first retrieve the public key for your key pair: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html#retrieving-the-public-key
 
-Then, add the public key to the authorized keys:
+Then, SSH into the Cromwell server instance and add the public key to the authorized keys ():
 
 ```
 $ echo 'ssh-rsa AAAAB3NzaC1yc2EAAA...PLE' >> /home/ec2-user/.ssh/authorized_keys
@@ -120,6 +123,16 @@ To start, run:
 
 ## Configure Network Settings
 
+### Assign Elastic IP
+
+Assign an Elastic IP address to the Cromwell server instance. The IP address assigned here will be used in the later section.
+
+![Elastic IP 01](./images/elastic-ip-01.png)
+
+![Elastic IP 02](./images/elastic-ip-02.png)
+
+![Elastic IP 03](./images/elastic-ip-03.png)
+
 ### Cromwell Server
 
 Make sure the listening port is set to `8000` and the server binds to all interfaces (i.e. `0.0.0.0`).
@@ -148,7 +161,11 @@ webservice {
 
 ### AWS Security Group
 
-Add TCP port `4200` to cromwell-server security group to allow inbound traffic for Job Manager.
+Choose `Security Groups`, start tyyping `cromwell-server-sg` in the search box, and choose the security group whose name starts with `cromwell-server-sg`.
+
+![TCP Inbound Rule 0](./images/tcp-inbound-rules-00.png)
+
+Add TCP port `4200` to the cromwell-server security group to allow inbound traffic for Job Manager.
 
 ![TCP Inbound Rule 1](./images/tcp-inbound-rules-01.png)
 
@@ -156,7 +173,7 @@ Add TCP port `4200` to cromwell-server security group to allow inbound traffic f
 
 ### NGINX
 
-Make sure the listening port is set to `80`, and turn off SSL.
+Make sure the listening port is set to `80`, and turn off SSL by commenting out the three lines as shown below:
 
 ```bash
 $ sudo nano /etc/nginx/nginx.conf
@@ -342,13 +359,19 @@ backend {
 SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
 
 ```bash
-$ wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.4.tar.gz
+wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.4.tar.gz
+```
+
+If the setup package is in private repository, use the following command instead. Replace `xyz-123-abc` with your own GitHub token:
+
+```bash
+curl -L -o cromwell-gwf-setup-0.1.4.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.4.tar.gz
 ```
 
 Decompress:
 
 ```bash
-$ tar xvzf cromwell-gwf-setup-0.1.4.tar.gz --strip-components=1
+tar xvzf cromwell-gwf-setup-0.1.4.tar.gz --strip-components=1
 ```
 
 ## Install Redis and Cromsfer
@@ -362,6 +385,7 @@ $ ./install.sh
 ## Configure Cromsfer
 
 ```bash
+$ mkdir -p ./cromsfer
 $ cp ./config/cromsfer/config.template.yaml ./cromsfer/config.yaml
 ```
 
@@ -389,14 +413,15 @@ The default CloudFormation does not come up with larger EC2 instance types. To a
 
 ## Start/Stop Cromwell Server
 
+If this is the first time, manually stop the Cromwell server instance and use the following command to start the server again.
+
 To bring up the server, run the following from your local machine:
 
 ```bash
-$ ./server.sh -u
+$ ./server.sh -u -i i-09477a79e2700bd2f -k ~/mykey.pem -r us-east-1
 ```
 
 ```
-$ ./server.sh -u
 {
     "StartingInstances": [
         {
@@ -427,7 +452,7 @@ Cromwell/Job Manager is available at http://ec2-100-26-88-232.compute-1.amazonaw
 To bring down the server, run the following from your local machine:
 
 ```bash
-$ ./server.sh -d
+$ ./server.sh -d -i i-09477a79e2700bd2f -k ~/mykey.pem -r us-east-1
 ```
 
 ## Test Workflow
