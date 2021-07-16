@@ -4,17 +4,21 @@ Setting Up AWS GWF (Genomics Workflow) + Cromwell
 
 ## Create a New VPC
 
-TBD
+Create a new VPC using the CloudFormation template here: https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=GenomicsVPC&templateURL=https://aws-quickstart.s3.amazonaws.com/quickstart-aws-vpc/templates/aws-vpc.template.yaml
 
 ## Deploy Genomics Workflow Core
 
-This can be done using the CloudFormation template. Follow the instructions in the section called `Deployment of Genomics Workflow Core into an existing VPC` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
+Create a Genomics Workflow Core using the CloudFormation templete here: https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=gwfcore&templateURL=https://aws-genomics-workflows.s3.amazonaws.com/latest/templates/gwfcore/gwfcore-root.template.yaml
+
+Follow the instructions in the section called `Deployment of Genomics Workflow Core into an existing VPC` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
 ## Deploy Cromwell Resources
 
-This can be done using the CloudFormation template. Follow the instructions in the section called `Deploy Cromwell Resources` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
+Create a Cromwell server instance and and and RDS Aurora Serverless database cluster using the CloudFormation template here: https://console.aws.amazon.com/cloudformation/home?#/stacks/new?stackName=cromwell-resources&templateURL=https://aws-genomics-workflows.s3.amazonaws.com/latest/templates/cromwell/cromwell-resources.template.yaml
+
+Follow the instructions in the section called `Deploy Cromwell Resources` which can be found [here](./docs/cloudformation/Installing-the-Genomics-Workflow-Core-and-Cromwell.pdf).
 
 The pre-downloaded template can be found in the `cloudformation` directory.
 
