@@ -55,8 +55,14 @@ Expand the option `Additional settings: launch template, user specified AMI`
 
 ## Save
 
+Click the `Create compute environment` button to save the changes.
+
 ## Add New Compute Environment to Priority Job Queue
 
+Choose the queue that your new compute environment to be added to.
+
 ![](../../images/alit/05.png)
+
+Select your new compute environment and make sure to move it to the top of the order so that it can be used before any other environment (or remove all other environments).
 
 ![](../../images/alit/06.png)
