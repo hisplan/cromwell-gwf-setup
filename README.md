@@ -359,19 +359,19 @@ backend {
 SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
 
 ```bash
-wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.8.tar.gz
+wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.9.tar.gz
 ```
 
 If the setup package is in private repository, use the following command instead. Replace `xyz-123-abc` with your own GitHub token:
 
 ```bash
-curl -L -o cromwell-gwf-setup-0.1.8.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.8.tar.gz
+curl -L -o cromwell-gwf-setup-0.1.9.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.9.tar.gz
 ```
 
 Decompress:
 
 ```bash
-tar xvzf cromwell-gwf-setup-0.1.8.tar.gz --strip-components=1
+tar xvzf cromwell-gwf-setup-0.1.9.tar.gz --strip-components=1
 ```
 
 ## Install Redis and Cromsfer
@@ -393,11 +393,11 @@ Open the `./cromsfer/config.yaml` file and replace `ec2-w-x-y-z.compute-1.amazon
 
 ```yaml
 cromwell:
-  url: http://ec2-100-26-88-232.compute-1.amazonaws.com
+  url: http://ec2-w-x-y-z.compute-1.amazonaws.com
   username: user1
   password: 123
 redis:
-  host: ec2-100-26-88-232.compute-1.amazonaws.com
+  host: ec2-w-x-y-z.compute-1.amazonaws.com
   port: 6379
 ```
 
@@ -437,7 +437,7 @@ $ ./server.sh -u -i i-09477a79e2700bd2f -k ~/mykey.pem -r us-east-1
         }
     ]
 }
-Cromwell server address: ec2-100-26-88-232.compute-1.amazonaws.com
+Cromwell server address: ec2-w-x-y-z.compute-1.amazonaws.com
 Redirecting to /bin/systemctl start docker.service
 Starting up Redis...
 Backing up Cromwell Server Log...
@@ -446,7 +446,7 @@ Waiting for Cromwell Server to be up and running...
 Waiting for Cromwell Server to be up and running...
 Starting up Job Manager...
 DONE.
-Cromwell/Job Manager is available at http://ec2-100-26-88-232.compute-1.amazonaws.com:4200
+Cromwell/Job Manager is available at http://ec2-w-x-y-z.compute-1.amazonaws.com:4200
 ```
 
 To bring down the server, run the following from your local machine:
@@ -457,4 +457,4 @@ $ ./server.sh -d -i i-09477a79e2700bd2f -k ~/mykey.pem -r us-east-1
 
 ## Test Workflow
 
-TBD
+Follow the [instructions here](test-workflow/README.md) and submit a test workflow.

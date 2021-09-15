@@ -1,0 +1,9 @@
+{
+    "pipelineType": "HelloWorld",
+    "project": "Test",
+    "sample": "Test",
+    "owner": "chunj",
+    "destination": "s3://dp-lab-gwf-core/outputs/HelloWorld/",
+    "transfer": "-",
+    "comment": ""
+}
