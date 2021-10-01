@@ -19,7 +19,7 @@ Run the following command to retrieve the public key for your key pair:
 ssh-keygen -y -f my-key-pair.pem > my-key-pai.pem.public
 ```
 
-where `my-key-pair.pem` is your existing EC2 key pair. Your public key will be stored in `my-key-pair.pem.public`. You should send the generated public key to the administrator.
+where `my-key-pair.pem` is your existing EC2 key pair. Your public key will be retrieved and stored in `my-key-pair.pem.public`. You should send the generated public key to the administrator.
 
 If the command fails, run the following command first to ensure that you've changed the permissions on your private key pair file so that only you can view it.
 
@@ -61,7 +61,7 @@ sudo htpasswd /etc/apache2/.htpasswd chunj
 
 Log out.
 
-On your computer, create a secrets file (also called service account key) and save it as `cromwell-secrets.json`. This file will be needed when you submit your job.
+On your computer, create a secrets file (a JSON file containing your username, password, and the server URL) and save it as `cromwell-secrets.json`. This file will be needed when you submit your job.
 
 ```json
 {
