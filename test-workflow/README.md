@@ -1,11 +1,10 @@
 # Test Workflow
 
-Install [SCING](https://github.com/hisplan/scing) or run the following command to create a conda environment and install Cromwell and Java Runtime:
+Install [SCING](https://github.com/hisplan/scing) or run the following command to create a conda environment and install Cromwell:
 
 ```
 conda create -n cromwell python=3.8 pip
 conda activate cromwell
-conda install -c cyclus java-jre
 pip install cromwell-tools==2.4.1
 ```
 
