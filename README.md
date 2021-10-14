@@ -359,19 +359,19 @@ backend {
 SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
 
 ```bash
-wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.9.tar.gz
+wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.10.tar.gz
 ```
 
 If the setup package is in private repository, use the following command instead. Replace `xyz-123-abc` with your own GitHub token:
 
 ```bash
-curl -L -o cromwell-gwf-setup-0.1.9.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.9.tar.gz
+curl -L -o cromwell-gwf-setup-0.1.10.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.10.tar.gz
 ```
 
 Decompress:
 
 ```bash
-tar xvzf cromwell-gwf-setup-0.1.9.tar.gz --strip-components=1
+tar xvzf cromwell-gwf-setup-0.1.10.tar.gz --strip-components=1
 ```
 
 ## Install Redis and Cromsfer
