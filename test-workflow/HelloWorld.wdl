@@ -16,34 +16,11 @@ task SayName {
     command <<<
         set -euo pipefail
 
-        echo "Hello World!"
-        echo "Hello ~{name}!" > msg.txt
-
-        sleep 5
+        echo "Hello ~{name}!" > hello-world.txt
     >>>
 
     output {
-        File out = "msg.txt"
-    }
-}
-
-task SayDate {
-
-    runtime {
-        docker: "ubuntu:20.04"
-        disks: "local-disk 2 HDD"
-        cpu: 1
-        memory: "1 GB"
-    }
-
-    command <<<
-        set -euo pipefail
-
-        date > msg.txt
-    >>>
-
-    output {
-        File out = "msg.txt"
+        File out = "hello-world.txt"
     }
 }
 
@@ -58,10 +35,7 @@ workflow HelloWorld {
             name = name
     }
 
-    call SayDate
-
     output {
-        File greeting = SayName.out
-        File today = SayDate.out
+        File outFile = SayName.out
     }
 }
