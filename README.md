@@ -1,6 +1,8 @@
 # cromwell-gwf-setup
 
-Setting Up AWS GWF (Genomics Workflow) + Cromwell
+Setting Up AWS GWF (Genomics Workflowss) + Cromwell
+
+![workflow system diagram](./images/workflow-system-diagram.png)
 
 ## Create a New VPC
 
