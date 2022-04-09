@@ -1,6 +1,6 @@
 # cromwell-gwf-setup
 
-Setting Up AWS GWF (Genomics Workflowss) + Cromwell
+Setting Up AWS GWF (Genomics Workflows) + Cromwell
 
 ![workflow system diagram](./images/workflow-system-diagram.png)
 
@@ -358,22 +358,10 @@ backend {
 
 ## Download the Setup Package
 
-SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (the repository must be publicly accessible):
+SSH into the Cromwell server EC2 instance. Run the following command to download the setup package (requires [jq](https://stedolan.github.io/jq/download/)):
 
 ```bash
-wget https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.14.tar.gz
-```
-
-If the setup package is in private repository, use the following command instead. Replace `xyz-123-abc` with your own GitHub token:
-
-```bash
-curl -L -o cromwell-gwf-setup-0.1.14.tar.gz  -H "Authorization: token xyz-123-abc"  https://github.com/hisplan/cromwell-gwf-setup/archive/refs/tags/v0.1.14.tar.gz
-```
-
-Decompress:
-
-```bash
-tar xvzf cromwell-gwf-setup-0.1.14.tar.gz --strip-components=1
+curl -Ls https://api.github.com/repos/hisplan/cromwell-gwf-setup/releases/latest | jq -r .tarball_url | xargs wget -O - | tar -xz --strip-components=1
 ```
 
 ## Install Redis and Cromsfer
